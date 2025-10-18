@@ -101,11 +101,13 @@ function App() {
   // Filter and sort companies
   const filteredAndSortedCompanies = useMemo(() => {
     let filtered = companies.filter(company => {
-      const matchesSearch = company.name.toLowerCase().includes(searchTerm.toLowerCase());
-      const matchesIndustry = !selectedIndustry || company.industry === selectedIndustry;
-      const matchesCompany = !selectedCompany || company.name === selectedCompany;
-      
-      return matchesSearch && matchesIndustry && matchesCompany;
+      const matchesSearch = searchTerm ? company.name.toLowerCase().includes(searchTerm.toLowerCase()) : false;
+      const matchesIndustry = selectedIndustry ? selectedIndustry.split(',').includes(company.industry) : false;
+      const matchesCompany = selectedCompany ? selectedCompany.split(',').includes(company.name) : false;
+      // If no filters, show all
+      if (!searchTerm && !selectedIndustry && !selectedCompany) return true;
+      // OR condition: match if any filter matches
+      return matchesSearch || matchesIndustry || matchesCompany;
     });
 
     // Sort companies
