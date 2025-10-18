@@ -1,0 +1,136 @@
+{
+  "companies": [
+    {
+      "id": 14,
+      "name": "CleanWater Solutions",
+      "industry": "Environmental",
+      "location": "Portland, Oregon",
+      "country": "United States",
+      "employees": 65,
+      "revenue": 5500000,
+      "founded": 2021,
+      "website": "https://cleanwatersolutions.com",
+      "description": "Innovative water purification and environmental solutions company."
+    },
+    {
+      "id": 6,
+      "name": "CloudOps Pro",
+      "industry": "Technology",
+      "location": "Denver, Colorado",
+      "country": "United States",
+      "employees": 75,
+      "revenue": 7500000,
+      "founded": 2021,
+      "website": "https://cloudopspro.com",
+      "description": "Cloud infrastructure and DevOps solutions provider."
+    },
+    {
+      "id": 3,
+      "name": "DataFlow Analytics",
+      "industry": "Finance",
+      "location": "New York, New York",
+      "country": "United States",
+      "employees": 85,
+      "revenue": 8500000,
+      "founded": 2020,
+      "website": "https://dataflowanalytics.com",
+      "description": "Advanced data analytics and financial insights platform."
+    },
+    {
+      "id": 9,
+      "name": "AgriTech Innovations",
+      "industry": "Agriculture",
+      "location": "Des Moines, Iowa",
+      "country": "United States",
+      "employees": 95,
+      "revenue": 9500000,
+      "founded": 2020,
+      "website": "https://agritechinnovations.com",
+      "description": "Smart farming and agricultural technology solutions."
+    },
+    {
+      "id": 18,
+      "name": "FoodTech Innovations",
+      "industry": "Food",
+      "location": "Nashville, Tennessee",
+      "country": "United States",
+      "employees": 95,
+      "revenue": 11000000,
+      "founded": 2020,
+      "website": "https://foodtechinnovations.com",
+      "description": "Revolutionary food technology and sustainable nutrition solutions."
+    },
+    {
+      "id": 19,
+      "name": "Travel Connect",
+      "industry": "Travel",
+      "location": "Las Vegas, Nevada",
+      "country": "United States",
+      "employees": 135,
+      "revenue": 19500000,
+      "founded": 2019,
+      "website": "https://travelconnect.com",
+      "description": "Next-generation travel booking and experience platform."
+    },
+    {
+      "id": 10,
+      "name": "FinanceFlow Systems",
+      "industry": "Finance",
+      "location": "Miami, Florida",
+      "country": "United States",
+      "employees": 145,
+      "revenue": 18000000,
+      "founded": 2018,
+      "website": "https://financeflowsystems.com",
+      "description": "Comprehensive financial management and workflow automation."
+    },
+    {
+      "id": 15,
+      "name": "Smart Home Tech",
+      "industry": "Technology",
+      "location": "Phoenix, Arizona",
+      "country": "United States",
+      "employees": 155,
+      "revenue": 16500000,
+      "founded": 2019,
+      "website": "https://smarthometech.com",
+      "description": "Intelligent home automation and IoT solutions."
+    },
+    {
+      "id": 20,
+      "name": "CyberSec Pro",
+      "industry": "Security",
+      "location": "Washington, D.C.",
+      "country": "United States",
+      "employees": 185,
+      "revenue": 24000000,
+      "founded": 2017,
+      "website": "https://cybersecpro.com",
+      "description": "Enterprise cybersecurity and threat protection services."
+    },
+    {
+      "id": 21,
+      "name": "GameDev Studios",
+      "industry": "Energy",
+      "location": "Atlanta, Georgia",
+      "country": "United States",
+      "employees": 220,
+      "revenue": 32000000,
+      "founded": 2016,
+      "website": "https://gamedevstudios.com",
+      "description": "Interactive entertainment and gaming technology company."
+    }
+  ],
+  "industries": [
+    "Technology",
+    "Finance", 
+    "Environmental",
+    "Agriculture",
+    "Food",
+    "Travel",
+    "Security",
+    "Energy",
+    "Healthcare",
+    "Education"
+  ]
+}
