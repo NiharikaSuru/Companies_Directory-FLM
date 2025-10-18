@@ -30,7 +30,7 @@ const CompanyTable = ({ companies, sortBy, sortOrder, onSort, onEdit, onDelete }
 
   const SortableHeader = ({ field, children, className = "" }) => (
     <th 
-      className={`px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-50 ${className}`}
+      className={`px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer ${className}`}
       onClick={() => onSort(field)}
     >
       <div className="flex items-center space-x-1">
@@ -47,7 +47,7 @@ const CompanyTable = ({ companies, sortBy, sortOrder, onSort, onEdit, onDelete }
     <div className="bg-white shadow-sm rounded-lg border border-gray-200 overflow-hidden">
       <div className="overflow-x-auto">
         <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
+          <thead className="bg-white">
             <tr>
               <SortableHeader field="id">ID</SortableHeader>
               <SortableHeader field="name">Company</SortableHeader>
@@ -65,41 +65,53 @@ const CompanyTable = ({ companies, sortBy, sortOrder, onSort, onEdit, onDelete }
             {companies.map((company) => (
               <tr key={company.id} className="hover:bg-gray-50 transition-colors">
                 <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-900">
-                  {company.id}
-                </td>
-                <td className="px-4 py-3 whitespace-nowrap">
-                  <Tooltip content={company.description}>
-                    <div className="text-sm font-medium text-primary-700 hover:text-primary-800 cursor-pointer">
-                      {company.name}
-                    </div>
+                  <Tooltip content={company.id} className="break-words max-w-xs">
+                    <span>{company.id}</span>
                   </Tooltip>
                 </td>
                 <td className="px-4 py-3 whitespace-nowrap">
-                  <span className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${getIndustryColor(company.industry)}`}>
-                    {company.industry}
-                  </span>
+                  <Tooltip content={company.name} className="break-words max-w-xs">
+                    <span className="text-sm font-medium text-primary-700 hover:text-primary-800 cursor-pointer">
+                      {company.name}
+                    </span>
+                  </Tooltip>
+                </td>
+                <td className="px-4 py-3 whitespace-nowrap">
+                  <Tooltip content={company.industry} className="break-words max-w-xs">
+                    <span className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${getIndustryColor(company.industry)}`}>
+                      {company.industry}
+                    </span>
+                  </Tooltip>
                 </td>
                 <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-900">
-                  {company.location}
+                  <Tooltip content={company.location} className="break-words max-w-xs">
+                    <span>{company.location}</span>
+                  </Tooltip>
                 </td>
                 <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-900">
-                  {company.employees.toLocaleString()}
+                  <Tooltip content={company.employees.toLocaleString()} className="break-words max-w-xs">
+                    <span>{company.employees.toLocaleString()}</span>
+                  </Tooltip>
                 </td>
                 <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-900">
-                  {formatCurrency(company.revenue)}
+                  <Tooltip content={formatCurrency(company.revenue)} className="break-words max-w-xs">
+                    <span>{formatCurrency(company.revenue)}</span>
+                  </Tooltip>
                 </td>
                 <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-900">
-                  {company.founded}
+                  <Tooltip content={company.founded} className="break-words max-w-xs">
+                    <span>{company.founded}</span>
+                  </Tooltip>
                 </td>
                 <td className="px-4 py-3 whitespace-nowrap text-sm space-x-2">
-                  <Tooltip content="Edit Company">
+                  <Tooltip content="Edit Company" className="break-words max-w-xs">
                     <button className="text-primary-700 hover:text-primary-800 transition-colors" onClick={() => onEdit(company)}>
                       <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                       </svg>
                     </button>
                   </Tooltip>
-                  <Tooltip content="Delete Company">
+                  <Tooltip content="Delete Company" className="break-words max-w-xs">
                     <button className="text-red-600 hover:text-red-800 transition-colors" onClick={() => onDelete(company.id)}>
                       <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />

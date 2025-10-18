@@ -5,10 +5,37 @@ import CompanyTable from './components/CompanyTable';
 import CompanyCards from './components/CompanyCards';
 import Pagination from './components/Pagination';
 import LoadingSkeleton from './components/LoadingSkeleton';
-import CompanyPopup from './components/CompanyPopup';
+import CompanyForm from './components/CompanyForm';
 import companiesData from './data/companies.json';
 
 function App() {
+  // Export table data to CSV
+  const exportToCSV = () => {
+    const headers = [
+      'ID', 'Company', 'Industry', 'Location', 'Employees', 'Revenue', 'Founded'
+    ];
+    const rows = paginatedCompanies.map(c => [
+      c.id,
+      c.name,
+      c.industry,
+      c.location,
+      c.employees,
+      c.revenue,
+      c.founded
+    ]);
+    const csvContent = [headers, ...rows]
+      .map(row => row.map(val => `"${String(val).replace(/"/g, '""')}` ).join(','))
+      .join('\n');
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.setAttribute('download', 'companies_export.csv');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+  const [confirmDeleteId, setConfirmDeleteId] = useState(null);
+  const [confirmDeleteOpen, setConfirmDeleteOpen] = useState(false);
   const [companies, setCompanies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [viewMode, setViewMode] = useState('table'); // 'table' or 'cards'
@@ -50,6 +77,13 @@ function App() {
   // Delete company
   const handleDeleteCompany = (id) => {
     setCompanies(companies.filter(c => c.id !== id));
+    setConfirmDeleteOpen(false);
+    setConfirmDeleteId(null);
+  };
+
+  const openDeleteConfirm = (id) => {
+    setConfirmDeleteId(id);
+    setConfirmDeleteOpen(true);
   };
 
   // Open popup for add
@@ -115,16 +149,8 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header />
+      <Header viewMode={viewMode} setViewMode={setViewMode} />
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <div className="flex justify-end mb-4">
-          <button
-            className="px-4 py-2 bg-blue-600 text-white rounded shadow hover:bg-blue-700"
-            onClick={openAddPopup}
-          >
-            Add Company
-          </button>
-        </div>
         <FilterControls
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm}
@@ -137,6 +163,8 @@ function App() {
           viewMode={viewMode}
           setViewMode={setViewMode}
           totalResults={filteredAndSortedCompanies.length}
+          openAddPopup={openAddPopup}
+          exportToCSV={exportToCSV}
         />
 
         {loading ? (
@@ -150,13 +178,13 @@ function App() {
                 sortOrder={sortOrder}
                 onSort={handleSort}
                 onEdit={openEditPopup}
-                onDelete={handleDeleteCompany}
+                onDelete={openDeleteConfirm}
               />
             ) : (
               <CompanyCards
                 companies={paginatedCompanies}
                 onEdit={openEditPopup}
-                onDelete={handleDeleteCompany}
+                onDelete={openDeleteConfirm}
               />
             )}
 
@@ -171,12 +199,29 @@ function App() {
             )}
           </>
         )}
-        <CompanyPopup
-          isOpen={popupOpen}
-          onClose={() => { setPopupOpen(false); setEditingCompany(null); }}
-          onSave={editingCompany ? handleEditCompany : handleAddCompany}
-          company={editingCompany}
-        />
+        {confirmDeleteOpen && (
+          <div className="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50">
+            <div className="bg-white rounded-xl shadow-xl p-6 w-full max-w-sm relative">
+              <div className="text-lg font-semibold mb-2">Confirm Delete</div>
+              <div className="text-gray-700 mb-4">Are you sure you want to delete this company?</div>
+              <div className="flex justify-end gap-2">
+                <button className="px-4 py-2 rounded bg-gray-200 text-gray-800 hover:bg-gray-300" onClick={() => { setConfirmDeleteOpen(false); setConfirmDeleteId(null); }}>Cancel</button>
+                <button className="px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700" onClick={() => handleDeleteCompany(confirmDeleteId)}>Delete</button>
+              </div>
+            </div>
+          </div>
+        )}
+        {popupOpen && (
+          <div className="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50">
+            <div className="bg-white rounded-xl shadow-xl p-0 w-full max-w-2xl relative">
+              <CompanyForm
+                company={editingCompany}
+                onSubmit={editingCompany ? handleEditCompany : handleAddCompany}
+                onCancel={() => { setPopupOpen(false); setEditingCompany(null); }}
+              />
+            </div>
+          </div>
+        )}
       </main>
     </div>
   );

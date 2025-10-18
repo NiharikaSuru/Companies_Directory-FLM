@@ -34,7 +34,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange, totalResults, items
   const visiblePages = getVisiblePages();
 
   return (
-    <div className="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6 mt-6 rounded-lg shadow-sm">
+    <div className="mt-4">
       <div className="flex-1 flex justify-between sm:hidden">
         <button
           onClick={() => onPageChange(currentPage - 1)}
