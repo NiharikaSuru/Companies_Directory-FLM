@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import Header from './components/Header';
 import FilterControls from './components/FilterControls';
 import CompanyTable from './components/CompanyTable';
@@ -38,7 +38,7 @@ function App() {
   const [confirmDeleteOpen, setConfirmDeleteOpen] = useState(false);
   const [companies, setCompanies] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [viewMode, setViewMode] = useState('table'); // 'table' or 'cards'
+  const [viewMode, setViewMode] = useState('table'); 
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedIndustry, setSelectedIndustry] = useState('');
   const [selectedCompany, setSelectedCompany] = useState('');
@@ -59,6 +59,7 @@ function App() {
     }, 1500);
     return () => clearTimeout(timer);
   }, []);
+  
   // Add company
   const handleAddCompany = (company) => {
     const newId = companies.length > 0 ? Math.max(...companies.map(c => c.id)) + 1 : 1;
