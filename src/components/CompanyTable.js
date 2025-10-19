@@ -1,4 +1,3 @@
-import React from 'react';
 import SortIcon from './icons/SortIcon';
 import Tooltip from './Tooltip';
 

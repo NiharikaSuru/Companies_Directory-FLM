@@ -1,4 +1,3 @@
-import React from 'react';
 import LayoutIcon from './icons/LayoutIcon';
 
 const Header = ({ viewMode, setViewMode }) => {

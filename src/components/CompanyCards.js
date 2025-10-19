@@ -1,5 +1,3 @@
-import React from 'react';
-
 const CompanyCards = ({ companies, onEdit, onDelete }) => {
   const formatCurrency = (amount) => {
     return new Intl.NumberFormat('en-US', {

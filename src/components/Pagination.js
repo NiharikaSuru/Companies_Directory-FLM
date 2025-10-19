@@ -1,4 +1,3 @@
-import React from 'react';
 import Tooltip from './Tooltip';
 
 const Pagination = ({ currentPage, totalPages, onPageChange, totalResults, itemsPerPage }) => {

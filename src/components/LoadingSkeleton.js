@@ -1,5 +1,3 @@
-import React from 'react';
-
 const LoadingSkeleton = ({ viewMode = 'table' }) => {
   const SkeletonBox = ({ className }) => (
     <div className={`bg-gray-200 rounded animate-skeleton-loading ${className}`}></div>
