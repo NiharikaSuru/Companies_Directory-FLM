@@ -1,6 +1,6 @@
-import React, { InputHTMLAttributes, forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { cn } from '../../utils.js';
-
+// Removed unused InputHTMLAttributes import to fix ESLint error
 const Input = forwardRef(function Input({
   className,
   label,
